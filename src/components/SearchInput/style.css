@@ -1,0 +1,34 @@
+.header {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.header input {
+    margin: 0 auto;
+    width: 400px;
+    padding: 10px;
+
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    border: none;
+ 
+    text-align: center;
+}
+
+.header input:focus {
+    outline: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0;
+}
+
+
+.loading {
+    text-align: center;
+    font-size: 50px;
+}
+
+
+@media screen and (max-width: 500px) {
+    .header input{ width: 200px; }
+}
