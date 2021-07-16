@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 
 import SearchInput from './components/SearchInput';
 import Pagination from './components/Pagination';
@@ -28,16 +27,19 @@ const App = () => {
                 .then((response) => {
                     setInfo(response);
                 });
+
         } else {
+
             fetch(`${API_BASE}/movie/top_rated?language=pt-BR&api_key=${API_KEY}`)
                 .then((response) => response.json())
                 .then((response) =>{
                     setInfo(response);
                 });
-        }
+        
+            }
 
 
-    }, [text]); 
+    }, [text, offset]); 
 
     return (
         <div className="App">
@@ -71,6 +73,20 @@ const App = () => {
                     setOffset={setOffset} />
                 
             )}
+
+            <footer>
+                Feito por Gabriel S. Castro
+                    <span>
+                        <br/><a href="https://www.linkedin.com/in/gabrielsouzacastro/">
+                            LinkedIn
+                        </a>  
+                        <br/><a href="https://www.github.com/users/castro-gabriel/">
+                            GitHub
+                        </a>
+                    </span>
+                    <br />
+                Dados pegos do site themoviedb.org
+            </footer>
 
         </div>
     );

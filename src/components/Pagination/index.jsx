@@ -20,9 +20,7 @@ const Pagination = ({limit, total, offset, setOffset}) => {
     var first = Math.max(current - MAX_LEFT, 1);
     
     function onPageChange(page) {
-        setOffset((page - 1) * limit)
-        current = page
-        console.log(current)
+        setOffset((page - 1) * limit);
     }
 
     return (
@@ -57,7 +55,6 @@ const Pagination = ({limit, total, offset, setOffset}) => {
                     </button>
                 </li>
 
-                
 
              </ul>
          </div>
