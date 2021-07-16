@@ -1,4 +1,5 @@
 import React from 'react';
+// import ReactPaginate from 'react-paginate';
 
 import './style.css';
 
@@ -14,20 +15,33 @@ const Pagination = ({limit, total, offset, setOffset}) => {
      * offset: Quantidade de itens que vamos pular quando alterar a pagina
     */
 
-    const current = offset ? (offset / limit) + 1 : 1;
-    const pages = Math.ceil(total / limit);
-    const first = Math.max(current - MAX_LEFT, 1);
+    // return (
+    //     <ReactPaginate 
+    //         previousLabel={'Anterior'}
+    //         nextLabel={"Proxima"}
+    //         pageCount={totalPages}
+    //         onPageChange={onChange}
+    //         containerClassName={"container_pagination"}
+    //         previousClassName={""}
+    //         nextClassName={""}
+    //         disabledClassName={""}
+    //         activeClassName={""}
+    //     />
+    // );
+
+    var current = offset ? (offset / limit) + 1 : 1;
+    var pages = Math.ceil(total / limit);
+    var first = Math.max(current - MAX_LEFT, 1);
     
     function onPageChange(page) {
         setOffset((page - 1) * limit)
+        current = page
         console.log(current)
     }
-
 
     return (
         <div className="container_pagination">
             <ul>
-
 
                 <li>
                     <button 
@@ -57,8 +71,10 @@ const Pagination = ({limit, total, offset, setOffset}) => {
                     </button>
                 </li>
 
-            </ul>
-        </div>
+                
+
+             </ul>
+         </div>
     )
 }
 

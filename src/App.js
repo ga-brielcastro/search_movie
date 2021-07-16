@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import qs from 'qs';
+import ReactPaginate from 'react-paginate';
 
 import SearchInput from './components/SearchInput';
 import Pagination from './components/Pagination';
@@ -17,6 +17,8 @@ const App = () => {
     const [text, setText] = useState('');
     const [info, setInfo] = useState({});
     const [offset, setOffset] = useState(0);
+
+    const [pageNumber, setPageNumber] = useState(0);
 
     useEffect(() => {
         setInfo({});
@@ -37,7 +39,12 @@ const App = () => {
         }
 
 
-    }, [text, offset]); 
+    }, [text]); 
+
+
+    const changePage = ({selected}) => {
+        setPageNumber(selected);
+    }
 
     return (
         <div className="App">
@@ -60,7 +67,7 @@ const App = () => {
                     ))}
                 </ul>
             )}
-
+            
 
             {info.results && (
                 console.log('Obteve resultados'),
@@ -69,6 +76,7 @@ const App = () => {
                     total={info.total_pages}
                     offset={offset}
                     setOffset={setOffset} />
+                
             )}
 
         </div>
