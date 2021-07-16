@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import SearchInput from './components/SearchInput';
 import Pagination from './components/Pagination';
+import Tmbd from './Tmdb';
 
 import './App.css'
+import Tmdb from './Tmdb';
 
 // Informações importantes para a requisição das informações >>>>>>>>>>>>
-const API_KEY = 'f779fc0eaab43f65ae493c08c987c27b';
-const API_BASE = 'https://api.themoviedb.org/3';
+// const API_KEY = 'f779fc0eaab43f65ae493c08c987c27b';
+// const API_BASE = 'https://api.themoviedb.org/3';
 const API_IMG = 'https://image.tmdb.org/t/p/w300';
 const LIMIT = 20; //Limites de itens por pagina
 
@@ -22,21 +24,19 @@ const App = () => {
 
         if (text) {
 
-            fetch(`${API_BASE}/search/movie?api_key=${API_KEY}&query=${text}`)
+            Tmdb.getMovies(text)
                 .then((response) => response.json())
                 .then((response) => {
-                    setInfo(response);
+                    setInfo(response)
                 });
 
         } else {
-
-            fetch(`${API_BASE}/movie/top_rated?language=pt-BR&api_key=${API_KEY}`)
+            Tmdb.getTopMovies()
                 .then((response) => response.json())
-                .then((response) =>{
-                    setInfo(response);
+                .then((response) => {
+                    setInfo(response)
                 });
-        
-            }
+        }
 
 
     }, [text, offset]); 
