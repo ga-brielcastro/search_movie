@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
-import './App.css'
+import qs from 'qs';
 
 import SearchInput from './components/SearchInput';
 import Pagination from './components/Pagination';
-import Tmbd from './tmdb';
+
+import './App.css'
 
 // Informações importantes para a requisição das informações >>>>>>>>>>>>
 const API_KEY = 'f779fc0eaab43f65ae493c08c987c27b';
@@ -16,32 +16,39 @@ const App = () => {
 
     const [text, setText] = useState('');
     const [info, setInfo] = useState({});
-    console.log(info.results)
+    const [offset, setOffset] = useState(0);
 
     useEffect(() => {
+        setInfo({});
+
         if (text) {
-            setInfo({});
 
             fetch(`${API_BASE}/search/movie?api_key=${API_KEY}&query=${text}`)
+                .then((response) => response.json())
+                .then((response) => {
+                    setInfo(response);
+                });
+        } else {
+            fetch(`${API_BASE}/movie/top_rated?language=pt-BR&api_key=${API_KEY}`)
                 .then((response) => response.json())
                 .then((response) =>{
                     setInfo(response);
                 });
-            
         }
-    }, [text]);
-    
+
+
+    }, [text, offset]); 
+
     return (
         <div className="App">
-            <SearchInput 
-                value={text} 
+            <SearchInput
+                value={text}
                 onChange={(search) => setText(search)}
             />
 
+           
+            {text && !info.results && <span className="loading">Buscando</span>}
 
-            {text && !info.results && (
-                <span className="loading">Carregando...</span>
-            )}
 
             {info.results && (
                 <ul className="movies_list">
@@ -49,16 +56,24 @@ const App = () => {
                         <li key={movie.id}>
                             <img src={`${API_IMG}${movie.poster_path}`} alt={movie.original_title} />
                             <span>{movie.original_title}</span>
-                        </li>   
+                        </li>
                     ))}
                 </ul>
             )}
 
-            <Pagination limit={LIMIT} total={1200} offset={600} />
+
+            {info.results && (
+                console.log('Obteve resultados'),
+                <Pagination
+                    limit={LIMIT}
+                    total={info.total_pages}
+                    offset={offset}
+                    setOffset={setOffset} />
+            )}
 
         </div>
     );
 
 }
 
-export default App ;
+export default App;

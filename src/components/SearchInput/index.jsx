@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './style.css';
 
-import useDebounce from '../../useDebounce';
+import useDebounce from '../../utils/useDebounce';
 
 const SearchInput = ({ value, onChange }) => {
 
