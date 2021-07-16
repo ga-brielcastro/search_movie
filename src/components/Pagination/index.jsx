@@ -15,20 +15,6 @@ const Pagination = ({limit, total, offset, setOffset}) => {
      * offset: Quantidade de itens que vamos pular quando alterar a pagina
     */
 
-    // return (
-    //     <ReactPaginate 
-    //         previousLabel={'Anterior'}
-    //         nextLabel={"Proxima"}
-    //         pageCount={totalPages}
-    //         onPageChange={onChange}
-    //         containerClassName={"container_pagination"}
-    //         previousClassName={""}
-    //         nextClassName={""}
-    //         disabledClassName={""}
-    //         activeClassName={""}
-    //     />
-    // );
-
     var current = offset ? (offset / limit) + 1 : 1;
     var pages = Math.ceil(total / limit);
     var first = Math.max(current - MAX_LEFT, 1);

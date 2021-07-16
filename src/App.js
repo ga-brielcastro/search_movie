@@ -18,8 +18,6 @@ const App = () => {
     const [info, setInfo] = useState({});
     const [offset, setOffset] = useState(0);
 
-    const [pageNumber, setPageNumber] = useState(0);
-
     useEffect(() => {
         setInfo({});
 
@@ -40,11 +38,6 @@ const App = () => {
 
 
     }, [text]); 
-
-
-    const changePage = ({selected}) => {
-        setPageNumber(selected);
-    }
 
     return (
         <div className="App">
