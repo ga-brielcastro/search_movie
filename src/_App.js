@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import SearchInput from './components/SearchInput';
 import Pagination from './components/Pagination';
-import Tmbd from './Tmdb';
 
 import './App.css'
 import Tmdb from './Tmdb';
