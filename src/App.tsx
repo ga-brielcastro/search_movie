@@ -1,32 +1,25 @@
 import React from 'react';
-import * as types from './types';
+import { useLocalObservable, observer } from 'mobx-react-lite';
 
 import SearchInput from './components/SearchInput';
-import Pagination from './components/Pagination';
 
 import './App.css'
-import api from './api';
-import { Movie } from './types';
+import { Store } from './store';
 
-const API_IMG = 'https://image.tmdb.org/t/p/w300';
+import * as types from './types';
 
-const App = () => {
+// const API_IMG = 'https://image.tmdb.org/t/p/w300';
+const App : React.FC = () => {
 
     const [text, setText] = React.useState('');
-    const [info, setInfo] = React.useState({});
-    const [offset, setOffset] = React.useState(0);
+    // const [data, setData] = React.useState<Object>();
 
-    const [data, setData] = React.useState<types.Movie[]>();
+    const store = useLocalObservable( () => new Store())
 
-    React.useEffect( () => {
-        const fetch = async () => {
-            setData(await api.getMovies())
-        }
-
-        fetch();
-    }, [])
-  
-    var x = data;
+    React.useEffect(() => {
+        store.fetch();
+    }, [store]);
+    
 
     return (
 
@@ -35,8 +28,14 @@ const App = () => {
                 value={text}
                 onChange={() => setText('')}
             />
-           
 
+            {
+                store.loading 
+                    ? <h2>Carregando ...</h2>
+                    : (
+                        console.log(store.movies)
+                    )
+            }
 
             <footer>
                 Feito por Gabriel S. Castro
@@ -58,4 +57,4 @@ const App = () => {
 
 }
 
-export default App;
+export default observer(App);

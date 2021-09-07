@@ -16,8 +16,9 @@ class API {
         });
     }
 
-    public async getMovies(): Promise<types.Movie[]> {
-        return this.base.get(`/movie/top_rated?language=pt-BR&api_key=${API_KEY}`);
+    public async getMovies() : Promise<types.Movie[]> {
+        const res = this.base.get<types.Movie[]>(`/movie/top_rated?language=pt-BR&api_key=${API_KEY}`);
+        return (await res).data;
     }
 }
 
