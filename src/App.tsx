@@ -2,17 +2,15 @@ import React from 'react';
 import { useLocalObservable, observer } from 'mobx-react-lite';
 
 import SearchInput from './components/SearchInput';
-
-import './App.css'
 import { Store } from './store';
 
-import * as types from './types';
+import './App.css'
 
-// const API_IMG = 'https://image.tmdb.org/t/p/w300';
+const API_IMG = 'https://image.tmdb.org/t/p/w300';
+
 const App : React.FC = () => {
 
     const [text, setText] = React.useState('');
-    // const [data, setData] = React.useState<Object>();
 
     const store = useLocalObservable( () => new Store())
 
@@ -26,7 +24,7 @@ const App : React.FC = () => {
         <div className="App">
             <SearchInput
                 value={text}
-                onChange={() => setText('')}
+                onChange={ (txt: string) => setText(txt)}
             />
 
             {

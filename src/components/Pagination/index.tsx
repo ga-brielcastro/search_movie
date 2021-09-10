@@ -7,8 +7,14 @@ import './style.css';
 const MAX_ITEMS = 9;
 const MAX_LEFT = (MAX_ITEMS - 1) / 2;
 
+interface IProps {
+    limit: number;
+    total: number;
+    offset: number;
+    setOffset: any;
+}
 
-const Pagination = ({limit, total, offset, setOffset}) => {
+const Pagination: React.FC<IProps> = ({limit, total, offset, setOffset}) => {
     /**
      * limit: Quantos itens vai aparecer por página
      * total: Total de itens
@@ -19,7 +25,7 @@ const Pagination = ({limit, total, offset, setOffset}) => {
     var pages = Math.ceil(total / limit);
     var first = Math.max(current - MAX_LEFT, 1);
     
-    function onPageChange(page) {
+    function onPageChange(page: number) {
         setOffset((page - 1) * limit);
     }
 
@@ -41,7 +47,7 @@ const Pagination = ({limit, total, offset, setOffset}) => {
                         <li key={page}>
                             <button 
                                 onClick={() => onPageChange(page)}
-                                className={page === current ? "item--active" : null}>
+                                className={page === current ? "item--active" : ''}>
                                 {page}
                             </button>
                         </li>

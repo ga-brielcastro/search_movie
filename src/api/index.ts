@@ -17,8 +17,8 @@ class API {
     }
 
     public async getMovies() : Promise<types.Movie[]> {
-        const res = this.base.get<types.Movie[]>(`/movie/top_rated?language=pt-BR&api_key=${API_KEY}`);
-        return (await res).data;
+        const res = await this.base.get<types.Movie[]>(`/movie/top_rated?language=pt-BR&api_key=${API_KEY}`);
+        return res.data;
     }
 }
 
