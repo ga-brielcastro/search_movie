@@ -1,10 +1,11 @@
 import React from 'react';
 import { useLocalObservable, observer } from 'mobx-react-lite';
-
+import * as types from './types';
 import SearchInput from './components/SearchInput';
 import { Store } from './store';
 
 import './App.css'
+import { toJS } from 'mobx';
 
 const API_IMG = 'https://image.tmdb.org/t/p/w300';
 
@@ -18,6 +19,8 @@ const App : React.FC = () => {
         store.fetch();
     }, [store]);
     
+    // var data: types.Result[] = store.result // Vem em proxy
+    var data: types.Result[] = toJS(store.result)
 
     return (
 
@@ -31,8 +34,9 @@ const App : React.FC = () => {
                 store.loading 
                     ? <h2>Carregando ...</h2>
                     : (
-                        console.log(store.movies)
+                        console.log(data) //Data não possui nenhuma propriedade
                     )
+
             }
 
             <footer>

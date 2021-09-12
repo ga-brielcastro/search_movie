@@ -7,11 +7,11 @@ export class Store {
         makeAutoObservable(this);
     }
 
-    public movies: types.Movie[] = [];
+    public result: types.Result[] = [];
     public loading: boolean = false;
 
-    public setMovies(movies: types.Movie[]) {
-        this.movies = movies;
+    public setMovies(result: types.Result[]) {
+        this.result = result;
     }
 
     public setLoading(loading: boolean) {
@@ -27,8 +27,8 @@ export class Store {
         this.setLoading(true);
         
         try{
-            const movies = await api.getMovies();
-            this.setMovies(movies);
+            const result = await api.getMovies();
+            this.setMovies(result);
         } catch(err) {
             console.error({message: err});
         } finally {
