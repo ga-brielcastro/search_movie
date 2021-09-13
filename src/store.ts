@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import api from "./api";
 import * as types from './types';
 
-export class Store {
+class Store {
     constructor() {
         makeAutoObservable(this);
     }
@@ -38,3 +38,5 @@ export class Store {
 
 
 }
+
+export default new Store();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocalObservable, observer } from 'mobx-react-lite';
 import SearchInput from './components/SearchInput';
-import { Store } from './store';
+import Store from './store';
 
 import './App.css'
 import { toJS } from 'mobx';
@@ -10,7 +10,8 @@ const App : React.FC = () => {
 
     const [text, setText] = React.useState('');
 
-    const store = useLocalObservable( () => new Store())
+    // const store = useLocalObservable( () => new Store())
+    const store = Store;
 
     React.useEffect(() => {
         store.fetch();
