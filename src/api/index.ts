@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import * as types from '../types';
 
+// API do Studio Ghibli
 const API_BASE = 'https://ghibliapi.herokuapp.com';
 
 
@@ -16,10 +17,9 @@ class API {
     }
 
     public async getAnimes() : Promise<types.Animes[]> {
-        const res = await this.base.get<types.Animes[]>('/films')
-        .then( r => r.data).then(x => x);
-
-        return res;
+        const res = await this.base.get<types.Animes[]>(`/films`)
+        
+        return res.data;
     }
 }
 

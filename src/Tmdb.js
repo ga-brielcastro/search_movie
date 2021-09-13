@@ -5,7 +5,7 @@ const API_BASE = 'https://api.themoviedb.org/3'
 //  Fazendo requisicao >>>>>>>>>>
 const Tmdb = {
     getMovies: async (query) => {
-        return await fetch(`${API_BASE}/search/movie?api_key=${API_KEY}&query=${query}`)
+        return await fetch(`${API_BASE}/search/movie?api_key=${API_KEY}&query=${query}`);
     },
 
     getTopMovies: async () => {

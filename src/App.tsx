@@ -1,13 +1,10 @@
 import React from 'react';
 import { useLocalObservable, observer } from 'mobx-react-lite';
-import * as types from './types';
 import SearchInput from './components/SearchInput';
 import { Store } from './store';
 
 import './App.css'
 import { toJS } from 'mobx';
-
-const API_IMG = 'https://image.tmdb.org/t/p/w300';
 
 const App : React.FC = () => {
 
@@ -20,8 +17,6 @@ const App : React.FC = () => {
     }, [store]);
     
     var res = toJS(store.result)
-
-    // var res = Object.keys(data).map( i => JSON.parse(data))
     
     return (
 
@@ -36,27 +31,17 @@ const App : React.FC = () => {
                     ? <h2>Carregando ...</h2>
                     : (
                      
-                       res.map((a, i) => {
-                   
-                            console.log(a)
-
+                        res.map((anime, i) => {
                             return (
-                                <div className="movies_list">
+                                
+                                <div key={i} className="anime_list">
+                                    <img src={anime.url} alt="" /> 
 
-                                    <img src={a.url} />
-
-                                    <li key={i}>
-                                        {a.original_title}
-                                    </li>
-
-                                    <span>
-                                        {a.original_title_romanised}
-                                    </span>
+                                    <h3>{anime.original_title_romanised}</h3>
+                                    <span>{anime.original_title}</span>
                                 </div>
-
                             )
-    
-                       })
+                        })
 
                     )
 
