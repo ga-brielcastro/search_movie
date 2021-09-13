@@ -19,9 +19,10 @@ const App : React.FC = () => {
         store.fetch();
     }, [store]);
     
-    // var data: types.Result[] = store.result // Vem em proxy
-    var data: types.Result[] = toJS(store.result)
+    var res = toJS(store.result)
 
+    // var res = Object.keys(data).map( i => JSON.parse(data))
+    
     return (
 
         <div className="App">
@@ -34,7 +35,29 @@ const App : React.FC = () => {
                 store.loading 
                     ? <h2>Carregando ...</h2>
                     : (
-                        console.log(data) //Data não possui nenhuma propriedade
+                     
+                       res.map((a, i) => {
+                   
+                            console.log(a)
+
+                            return (
+                                <div className="movies_list">
+
+                                    <img src={a.url} />
+
+                                    <li key={i}>
+                                        {a.original_title}
+                                    </li>
+
+                                    <span>
+                                        {a.original_title_romanised}
+                                    </span>
+                                </div>
+
+                            )
+    
+                       })
+
                     )
 
             }
@@ -50,7 +73,7 @@ const App : React.FC = () => {
                         </a>
                     </span>
                     <br />
-                Dados pegos do site themoviedb.org
+                Dados pegos da API Studio Ghibli.
             </footer>
 
         </div>

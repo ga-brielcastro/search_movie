@@ -12,10 +12,10 @@ body {
 }
 
 .movies_list {
-    display: grid;
+    display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    list-style: none;
     grid-gap: 1.5rem;
+    list-style: none;
 }
 
 .movies_list li {
@@ -28,13 +28,6 @@ body {
 
 .movies_list span {
     font-size: 1rem;
-}
-
-.loading, 
-.nothing_foung {
-    display: block;
-    text-align: center;
-    font-size: 30px;
 }
 
 footer {

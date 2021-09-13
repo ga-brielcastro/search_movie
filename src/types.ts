@@ -1,12 +1,6 @@
-export interface Result{
-  page: string;
-  results: any;
-  total_pages: number;
-  total_results: number
-}
-
-export interface Movie {
-  id: number;
+export interface Animes {
+  id: string;
   original_title: string;
-  poster_path: string;
+  original_title_romanised: string;
+  url: string;
 }
