@@ -2,15 +2,15 @@ import { makeAutoObservable } from "mobx";
 import api from "./api";
 import * as types from './types';
 
-class Store {
+export class Store {
     constructor() {
         makeAutoObservable(this);
     }
 
-    public result: types.Animes[] = [];
+    public result : types.Movie[] = [];
     public loading: boolean = false;
 
-    public setMovies(result: types.Animes[]) {
+    public setMovies(result: types.Movie[]) {
         this.result = result;
     }
 
@@ -38,5 +38,3 @@ class Store {
 
 
 }
-
-export default new Store();

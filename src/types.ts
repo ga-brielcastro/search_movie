@@ -1,6 +1,6 @@
-export interface Animes {
-  id: string;
+export interface Movie {
+  id: number;
   original_title: string;
-  original_title_romanised: string;
-  url: string;
+  title: string;
+  backdrop_path: string;
 }

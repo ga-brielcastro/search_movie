@@ -1,23 +1,24 @@
 import React from 'react';
 import { useLocalObservable, observer } from 'mobx-react-lite';
 import SearchInput from './components/SearchInput';
-import Store from './store';
-
+import { Store } from './store';
 import './App.css'
 import { toJS } from 'mobx';
+
+import * as types from './types';
 
 const App : React.FC = () => {
 
     const [text, setText] = React.useState('');
 
-    // const store = useLocalObservable( () => new Store())
-    const store = Store;
+    const store = useLocalObservable( () => new Store())
 
     React.useEffect(() => {
         store.fetch();
     }, [store]);
     
-    var res = toJS(store.result)
+    var res = toJS(store.result);
+   
     
     return (
 
@@ -32,14 +33,18 @@ const App : React.FC = () => {
                     ? <h2>Carregando ...</h2>
                     : (
                      
-                        res.map((anime, i) => {
+                        
+
+                        // console.log(res)
+
+                        res.map((movie, i) => {
                             return (
                                 
                                 <div key={i} className="anime_list">
-                                    <img src={anime.url} alt="" /> 
+                                    <img src={movie.backdrop_path} alt="" /> 
 
-                                    <h3>{anime.original_title_romanised}</h3>
-                                    <span>{anime.original_title}</span>
+                                    <h3>{movie.title}</h3>
+                                    <span>{movie.title}</span>
                                 </div>
                             )
                         })
